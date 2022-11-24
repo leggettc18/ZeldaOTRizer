@@ -10,7 +10,7 @@ target_compile_options(ZeldaOTRizer_compiler_flags INTERFACE
 )
 add_library(ZeldaOTRizer STATIC Sequence.cpp)
 if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
-    get_property(MSVC_RUNTIM_LIBRARY_DEFAULT TARGET SequenceOTRizer PROPERTY MSVC_RUNTIME_LIBRARY)
+    get_property(MSVC_RUNTIM_LIBRARY_DEFAULT TARGET ZeldaOTRizer PROPERTY MSVC_RUNTIME_LIBRARY)
     if ("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "x64")
         string(CONCAT "MSVC_RUNTIME_LIBRARY_STR"
             $<$<CONFIG:Debug>:
