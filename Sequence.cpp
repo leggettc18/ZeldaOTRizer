@@ -5,13 +5,13 @@ ZeldaOTRizer::Sequence::Sequence(std::shared_ptr<Ship::Archive> otrFile, const c
 }
 
 void ZeldaOTRizer::Sequence::WriteResourceData() {
-    writer->Write((uint32_t)this->size);
-    writer->Write(rawBinary.data(), this->size);
-    writer->Write(sequenceNum);
-    writer->Write(medium);
-    writer->Write(cachePolicy);
-    writer->Write(numFonts);
-    for (uint32_t i = 0; i < numFonts; i++) {
-        writer->Write(fontIndices[i]);
+    writer->Write((uint32_t)Size);
+    writer->Write(RawBinary.data(), Size);
+    writer->Write(SequenceNum);
+    writer->Write(Medium);
+    writer->Write(CachePolicy);
+    writer->Write(NumFonts);
+    for (uint32_t i = 0; i < NumFonts; i++) {
+        writer->Write(FontIndices[i]);
     }
 }
