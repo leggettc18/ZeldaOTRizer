@@ -1,7 +1,9 @@
 #include "Sequence.h"
+#include "Types.h"
 
 ZeldaOTRizer::Sequence::Sequence(std::shared_ptr<Ship::Archive> otrFile, const char* outPath)
-    : OTRizer::Resource(otrFile, outPath, 0x4F534551, 2, 0) {
+    : OTRizer::Resource(otrFile, outPath, static_cast<int>(ResourceTypes::AudioSequence),
+                        static_cast<int>(GameVersions::Rachael), resourceVersions[ResourceTypes::AudioSequence]) {
 }
 
 void ZeldaOTRizer::Sequence::WriteResourceData() {
