@@ -47,5 +47,12 @@ class Sequence : public OTRizer::Resource {
      * for more info on which indices to use.
      */
     std::vector<uint8_t> FontIndices;
+
+    /**
+     * @brief Constructs a Sequence Resource from a .seq file and matching .meta file.
+     * @param fileName - path to .seq file where a .meta file of the same name exists in the same directory.
+     * @returns a new ZeldaOTRizer::Sequence resource.
+     */
+    static Sequence FromSeqFile(std::shared_ptr<Ship::Archive> otrFile, const std::filesystem::path& fileName);
 };
 }; // namespace ZeldaOTRizer
