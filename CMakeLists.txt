@@ -5,7 +5,7 @@ target_compile_features(ZeldaOTRizer_compiler_flags INTERFACE cxx_std_20)
 set(gcc_like_cxx "$<COMPILE_LANG_AND_ID:CXX,ARMClang,AppleClang,Clang,GNU,LCC>")
 set(msvc_like_cxx "$<COMPILE_LANG_AND_ID:CXX,MSVC>")
 target_compile_options(ZeldaOTRizer_compiler_flags INTERFACE
-    "$<${gcc_like_cxx}:$<BUILD_INTERFACE:-Wall;-Wextra;-Wsahdow;-Wformat=2;-Wunused>>"
+    "$<${gcc_like_cxx}:$<BUILD_INTERFACE:-Wall;-Wextra;-Wshadow;-Wformat=2;-Wunused>>"
     "$<${msvc_like_cxx}:$<BUILD_INTERFACE:-W3>>"
 )
 add_library(ZeldaOTRizer STATIC Sequence.cpp)
