@@ -38,13 +38,8 @@ ZeldaOTRizer::Sequence::FromSeqFile(std::shared_ptr<Ship::Archive> otrFile, cons
     std::ifstream metaFile(afterPath + ".meta");
     // Replace the file name with the name from the .meta file.
     if (std::getline(metaFile, metaName)) {
-        auto tmp = StringUtils::Split(afterPath, "/");
         StringUtils::ReplaceOriginal(metaName, "/", "|");
-        tmp[tmp.size() - 1] = metaName;
-        afterPath =
-            std::accumulate(tmp.begin(), tmp.end(), std::string(), [](std::string lhs, const std::string& rhs) {
-                return lhs.empty() ? rhs : lhs + '/' + rhs;
-            });
+        afterPath = "custom/music/" + metaName;
     }
     // Get the font(s) from the .meta file eventually this should support multiple,
     // but for now only one.
