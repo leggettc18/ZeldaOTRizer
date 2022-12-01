@@ -51,6 +51,13 @@ inline std::vector<std::string> Split(std::string s, const std::string& delimite
     res.push_back(s.substr(posStart));
     return res;
 }
+
+inline void Sanitize(std::string& str) {
+    // remove trailing carriage returns, if present.
+    if (!str.empty() && str.back() == '\r') {
+        str.pop_back();
+    }
+}
 };
 
 #endif

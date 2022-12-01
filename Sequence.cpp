@@ -39,12 +39,14 @@ ZeldaOTRizer::Sequence::FromSeqFile(std::shared_ptr<Ship::Archive> otrFile, cons
     // Replace the file name with the name from the .meta file.
     if (std::getline(metaFile, metaName)) {
         StringUtils::ReplaceOriginal(metaName, "/", "|");
+        StringUtils::Sanitize(metaName);
         afterPath = "custom/music/" + metaName;
     }
     // Get the font(s) from the .meta file eventually this should support multiple,
     // but for now only one.
     std::string metaFontIdx;
     if (std::getline(metaFile, metaFontIdx)) {
+        StringUtils::Sanitize(metaFontIdx);
         fontIdx = stoi(metaFontIdx, nullptr, 16);
     }
     // Get the sequence type (for now it will be either bgm or fanfare).
@@ -52,6 +54,7 @@ ZeldaOTRizer::Sequence::FromSeqFile(std::shared_ptr<Ship::Archive> otrFile, cons
     if (!std::getline(metaFile, type)) {
         type = "bgm";
     }
+    StringUtils::Sanitize(type);
     // append the type to the database name for later extraction by the game.
     std::locale loc;
     for (int i = 0; i < type.length(); i++) {
