@@ -22,20 +22,14 @@ void ZeldaOTRizer::Sequence::WriteResourceData() {
 }
 
 ZeldaOTRizer::Sequence
-ZeldaOTRizer::Sequence::FromSeqFile(std::shared_ptr<Ship::Archive> otrFile, const std::filesystem::path& fileName) {
+ZeldaOTRizer::Sequence::FromSeqFile(std::shared_ptr<Ship::Archive> otrFile, const std::filesystem::path& filePath) {
     // Use the existing path and the sequence's corresponding .meta file to construct the resource
     // and OTR Database Name.
     std::string metaName;
     uint8_t fontIdx;
-    std::vector<std::string> splitPath = StringUtils::Split(fileName.generic_string(), ".");
-    if (splitPath.size() >= 2) {
-        splitPath.pop_back();
-    }
-    std::string afterPath =
-        std::accumulate(splitPath.begin(), splitPath.end(), std::string(),
-                        [](std::string lhs, const std::string& rhs) { return lhs.empty() ? rhs : lhs + '.' + rhs; });
+    std::string afterPath;
     // Parse the .meta file.
-    std::ifstream metaFile(afterPath + ".meta");
+    std::ifstream metaFile(filePath.parent_path() / filePath.stem() += ".meta");
     // Replace the file name with the name from the .meta file.
     if (std::getline(metaFile, metaName)) {
         StringUtils::ReplaceOriginal(metaName, "/", "|");
@@ -63,7 +57,7 @@ ZeldaOTRizer::Sequence::FromSeqFile(std::shared_ptr<Ship::Archive> otrFile, cons
     afterPath += ("_" + type);
     // Create the Sequence Resource.
     ZeldaOTRizer::Sequence sequence(otrFile, afterPath.c_str());
-    std::vector<char> binaryData = FileUtils::ReadAllBytes(fileName);
+    std::vector<char> binaryData = FileUtils::ReadAllBytes(filePath);
     sequence.Size = binaryData.size();
     sequence.RawBinary = std::vector<char>(binaryData.size());
     memcpy(sequence.RawBinary.data(), binaryData.data(), binaryData.size());
