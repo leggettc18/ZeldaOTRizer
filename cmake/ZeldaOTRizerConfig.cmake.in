@@ -1,0 +1,7 @@
+@PACKAGE_INIT@
+
+find_package(OTRizer)
+
+if(NOT TARGET ZeldaOTRizer::ZeldaOTRizer)
+    include(${CMAKE_CURRENT_LIST_DIR}/ZeldaOTRizerTargets.cmake)
+endif()

@@ -1,4 +1,4 @@
-#include "Sequence.h"
+#include "ZeldaOTRizer/Sequence.h"
 #include "Types.h"
 #include "Utils.h"
 #include <iostream>
@@ -26,7 +26,7 @@ ZeldaOTRizer::Sequence::FromSeqFile(std::shared_ptr<Ship::Archive> otrFile, cons
     // Use the existing path and the sequence's corresponding .meta file to construct the resource
     // and OTR Database Name.
     std::string metaName;
-    uint8_t fontIdx;
+    uint8_t fontIdx = 0;
     std::string afterPath;
     // Parse the .meta file.
     std::ifstream metaFile(filePath.parent_path() / filePath.stem() += ".meta");
