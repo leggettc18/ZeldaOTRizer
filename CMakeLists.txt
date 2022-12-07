@@ -36,19 +36,20 @@ include (GNUInstallDirs)
 
 install(TARGETS ZeldaOTRizer
     EXPORT ZeldaOTRizerTargets
-    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT Development
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT Runtime
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} COMPONENT Runtime
 )
 
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/ZeldaOTRizer
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR} COMPONENT Development
 )
 
 install(EXPORT ZeldaOTRizerTargets
     FILE ZeldaOTRizerTargets.cmake
     NAMESPACE ZeldaOTRizer::
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/ZeldaOTRizer
+    COMPONENT Development
 )
 
 include(CMakePackageConfigHelpers)
@@ -70,6 +71,7 @@ install(
         ${CMAKE_BINARY_DIR}/cmake/ZeldaOTRizerConfig.cmake
         ${CMAKE_BINARY_DIR}/cmake/ZeldaOTRizerConfigVersion.cmake
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/ZeldaOTRizer
+    COMPONENT Development
 )
 
 export(EXPORT ZeldaOTRizerTargets
